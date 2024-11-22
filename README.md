@@ -1,67 +1,61 @@
-# Exp-No:1 - 4 Bit Adder - Write Verilog Code and Verify the Functionality using Test-bench ( Using Frontend tool - nclaunch in cadence).
+# EXP1: 4 Bit Adder functionality verification
 
-**Aim:** <br>
-<br>
-&emsp;&emsp;To write a verilog code for 4bit adder and verify the functionality using Test bench.<br>
+## Aim:
+To write a verilog code for 4bit adder and verify the functionality using Test bench.
 
-&emsp;&emsp;&emsp;&emsp;Write Verilog Code<br>
+ Write Verilog Code
 
-&emsp;&emsp;&emsp;&emsp;Verify the Functionality using Test-bench.<br>
-<br>
+ Verify the Functionality using Test-bench.
 
-**Tool Required:** <br>
-<br>
-&emsp;&emsp;Functional Simulation: nclaunch Simulator (nclaunch) <br>
-<br>
+## Tool Required: 
+Functional Simulation: nclaunch Simulator (nclaunch) 
 
-**4-bit Adder Design:** <br>
-<br>
-&emsp;&emsp;To construct a 4-bit adder, need to chain together four 1-bit full adders. Each full adder computes the sum and carry for one bit of the two numbers. The carry-out from one adder feeds into the carry-in of the next adder in the sequence. This process adds the two 4-bit numbers bit by bit, with the carry propagating through each stage, resulting in a final sum and carry-out at the end.
-&emsp;&emsp;To design a 1-bit full adder, the first step is to create a truth table that represents all possible combinations of the inputs (A, B, and CIN) and the corresponding outputs (Sum(S) and COUT).<br>
-<br>
+## 4-bit Adder Design:
+To construct a 4-bit adder, need to chain together four 1-bit full adders. Each full adder computes the sum and carry for one bit of the two numbers. The carry-out from one adder feeds into the carry-in of the next adder in the sequence. This process adds the two 4-bit numbers bit by bit, with the carry propagating through each stage, resulting in a final sum and carry-out at the end.
+
+To design a 1-bit full adder, the first step is to create a truth table that represents all possible combinations of the inputs (A, B, and CIN) and the corresponding outputs (Sum(S) and COUT).
 
 ![image](https://github.com/user-attachments/assets/716a26b6-a449-42e0-9e2d-cdbaa4b291b9)
 
-Here’s the truth table for a 1-bit full adder: <br>
-<br>
+Here’s the truth table for a 1-bit full adder:
 
 ![tt](https://github.com/user-attachments/assets/0b3ab24f-1d7e-4a01-80ce-5e7406f4082b)
 
-<br>
+### Fig 1 : Diagram and truth table of full adder
 
-**<p align="center">Fig 1 : Diagram and truth table of full adder**
+### Logic Expressions:
 
-<br>
-
-**Logic Expressions:** <br>
-<br>
 1.	Sum (S):
    
-&emsp;&emsp;S=A⊕B⊕CIN
+S=A⊕B⊕CIN
 
-&emsp;&emsp;Where ⊕ represents XOR.
+Where ⊕ represents XOR.
 
 3.	Carry out (COUT):
    
-&emsp;&emsp;COUT=(A&B) | (CIN&(A^B))
-<br>
+COUT=(A&B) | (CIN&(A^B))
 
 ![image](https://github.com/user-attachments/assets/7d6fa554-2614-4f19-aa68-65c9e6153caa)
 
-<br>
+### Fig 2:Diagram of 4 Bit Adder
 
-**<p align="center">Fig 2:Diagram of 4 Bit Adder**
+## Creating Source Codes 
 
-<br>
+	In the Terminal, type gedit <filename>.v (ex: gedit 4bitadder.v). 
 
-**Creating Source Codes** <br>
-<br>
-&emsp;&emsp;In the Terminal, type gedit <filename>.v (ex: gedit 4bitadder.v). <br>
+	A Blank Document opens up into which the following source code can be typed down. 
 
-&emsp;&emsp;A Blank Document opens up into which the following source code can be typed down. <br>
+Note : File name should be with HDL Extension
 
-&emsp;&emsp;Note : File name should be with HDL Extension<br>
-<br>
+### a) Verify the Functionality 
+
+	Three Codes shall be written for implementation of 4-bit Adder as follows, 
+
+•	fa.v → Single Bit 3-Input Full Adder [Sub-Module / Function] 
+
+•	fa_4bit.v → Top Module for Adding 4-bit Inputs. 
+
+•	fa_4bit_test.v → Test bench 
 
 **Verilog code for 1 Bit Full adder** <br>
 ```
@@ -89,6 +83,7 @@ full_adder fa3 (A[3],B[3],C3,S[3],C4);
 endmodule
 
 ```
+
 
 **a) Verify the Functionality** <br>
 <br>
@@ -118,190 +113,127 @@ end
 endmodule
 
 ```
+## Functional Simulation: 
 
-**Functional Simulation:** <br>
-<br>
-&emsp;&emsp;Invoke the cadence environment by type the below commands <br>
+	Invoke the cadence environment by type the below commands 
 
-&emsp;&emsp;tcsh (Invokes C-Shell) <br>
+	tcsh (Invokes C-Shell) 
 
-&emsp;&emsp;source /cadence/install/cshrc (mention the path of the tools) <br>
+	source /cadence/install/cshrc (mention the path of the tools) 
 
-&emsp;&emsp;```(The path of cshrc could vary depending on the installation destination)<br>```
+      (The path of cshrc could vary depending on the installation destination)
       
-&emsp;&emsp;After this you can see the window like below <br>
-<br>
+	After this you can see the window like below 
 
-![20241006_041054](https://github.com/user-attachments/assets/d9c6d73b-24f4-4e2d-9a6e-a04c6e381ab9)
+	To Launch Simulation tool 
 
-<br>
+•	linux:/> nclaunch -new& // “-new” option is used for invoking NCVERILOG for the first time for any design 
 
-**<p align="center">Fig 3:Invoke the Cadence Environment**
+or
 
-<br>
-&emsp;&emsp;To Launch Simulation tool <br>
+•	linux:/> nclaunch& // On subsequent calls to NCVERILOG 
 
-&emsp;&emsp;&emsp;&emsp;linux:/> nclaunch -new& // “-new” option is used for invoking NCVERILOG for the first time for any design <br>
+	It will invoke the nclaunch window for functional simulation we can compile,elaborate and simulate it using Multiple Step .
 
-&emsp;&emsp;&emsp;&emsp;or<br>
+<img width="950" alt="exp1 1" src="https://github.com/user-attachments/assets/5e6f7ca9-4a4a-4e3b-9ef0-af1e35273307">
 
-&emsp;&emsp;&emsp;&emsp;linux:/> nclaunch& // On subsequent calls to NCVERILOG <br>
+### Fig 4:Setting Multi-step simulation
 
-&emsp;&emsp;It will invoke the nclaunch window for functional simulation we can compile,elaborate and simulate it using Multiple Step .<br>
-<br>
+	Select Multiple Step and then select “Create cds.lib File” .
 
-![Picture4](https://github.com/user-attachments/assets/32e0e7a3-c868-4cf2-b00d-f49f959f19f6)
+	Click the cds.lib file and save the file by clicking on Save option 
 
-<br>
+<img width="952" alt="exp1 2" src="https://github.com/user-attachments/assets/1f1c67cb-f59c-4b9b-999d-ee594a34c512">
 
-**<p align="center">Fig 4:Setting Multi-step simulation**
+### Fig 5:cds.lib file Creation
 
-<br>
-&emsp;&emsp;Select Multiple Step and then select “Create cds.lib File” .<br>
+	Save cds.lib file and select the correct option for cds.lib file format based on the HDL Language and Libraries used. 
 
-&emsp;&emsp;Click the cds.lib file and save the file by clicking on Save option <br>
-<br>
+	Select “Don’t include any libraries (verilog design)” from “New cds.lib file” and click on “OK” as in below figure .
 
-![Picture5](https://github.com/user-attachments/assets/7ec7c023-972c-42a9-bed5-b54b6ec354f6)
+•	We are simulating verilog design without using any libraries 
 
-<br>
+•	A Click “OK” in the “nclaunch: Open Design Directory” window as shown in below figure 
 
-**<p align="center">Fig 5:cds.lib file Creation**
+![image](https://github.com/user-attachments/assets/781b297a-11e9-4140-89c5-ee3b0d15bbd4)
 
-<br>
-&emsp;&emsp;Save cds.lib file and select the correct option for cds.lib file format based on the HDL Language and Libraries used. <br>
+### Fig 6: Selection of Don’t include any libraries
 
-&emsp;&emsp;Select “Don’t include any libraries (verilog design)” from “New cds.lib file” and click on “OK” as in below figure .<br>
+	A ‘NCLaunch window’ appears as shown in figure below 
 
-&emsp;&emsp;&emsp;&emsp;We are simulating verilog design without using any libraries <br>
+	Left side you can see the HDL files. Right side of the window has worklib and snapshots directories listed. 
 
-&emsp;&emsp;&emsp;&emsp;A Click “OK” in the “nclaunch: Open Design Directory” window as shown in below figure <br>
-<br>
+	Worklib is the directory where all the compiled codes are stored while Snapshot will have output of elaboration which in turn goes for simulation .
 
-![Screenshot 2024-10-05 093336](https://github.com/user-attachments/assets/8eaacf8e-98c2-4ce2-b9ac-645d919446dc)
+	To perform the function simulation, the following three steps are involved Compilation, Elaboration and Simulation. 
 
-<br>
+<img width="959" alt="exp1 3" src="https://github.com/user-attachments/assets/1800dd57-8a63-4651-a39f-d0ca1cba877e">
 
-**<p align="center">Fig 6: Selection of Don’t include any libraries**
+### Fig 7: Nclaunch Window
 
-<br>
-&emsp;&emsp;A ‘NCLaunch window’ appears as shown in figure below <br>
+## Step 1: Compilation:– Process to check the correct Verilog language syntax and usage 
 
-&emsp;&emsp;Left side you can see the HDL files. Right side of the window has worklib and snapshots directories listed. <br>
+	Inputs: Supplied are Verilog design and test bench codes 
 
-&emsp;&emsp;Worklib is the directory where all the compiled codes are stored while Snapshot will have output of elaboration which in turn goes for simulation .<br>
+	Outputs: Compiled database created in mapped library if successful, generates report else error reported in log file 
 
-&emsp;&emsp;To perform the function simulation, the following three steps are involved Compilation, Elaboration and Simulation. <br>
-<br>
+	Steps for compilation: 
 
-![Screenshot 2024-10-05 093427](https://github.com/user-attachments/assets/9f80121f-a628-4847-afd7-d094d7237048)
+1. Create work/library directory (most of the latest simulation tools creates automatically) 
+2. Map the work to library created (most of the latest simulation tools creates automatically) 
+3. Run the compile command with compile options 
+i.e Cadence IES command for compile: ncverilog +access+rwc -compile fa.v
 
-<br>
+Left side select the file and in Tools : launch verilog compiler with current selection will get enable. Click it to compile the code 
 
-**<p align="center">Fig 7: Nclaunch Window**
+Worklib is the directory where all the compiled codes are stored while Snapshot will have output of elaboration which in turn goes for simulation
 
-<br>
+<img width="959" alt="exp1 3" src="https://github.com/user-attachments/assets/2490e515-e8d0-46d8-b67c-9d601c11228e">
+### Fig 8: Compiled database in worklib
 
-**Step 1: Compilation:– Process to check the correct Verilog language syntax and usage** <br>
-<br>
-&emsp;&emsp;Inputs: Supplied are Verilog design and test bench codes <br>
+	After compilation it will come under worklib you can see in right side window
 
-&emsp;&emsp;Outputs: Compiled database created in mapped library if successful, generates report else error reported in log file <br>
-<br>
+	Select the test bench and compile it. It will come under worklib. Under Worklib you can see the module and test-bench. 
 
-**Steps for compilation:** <br>
-<br>
-&emsp;&emsp;1. Create work/library directory (most of the latest simulation tools creates automatically) <br>
+	The cds.lib file is an ASCII text file. It defines which libraries are accessible and where they are located. It contains statements that map logical library names to their physical directory paths. For this Design, you will define a library called “worklib”
 
-&emsp;&emsp;2. Map the work to library created (most of the latest simulation tools creates automatically) <br>
+## Step 2: Elaboration:– To check the port connections in hierarchical design 
+	Inputs: Top level design / test bench Verilog codes 
 
-&emsp;&emsp;3. Run the compile command with compile options <br>
+	Outputs: Elaborate database updated in mapped library if successful, generates report else error reported in log file 
 
-&emsp;&emsp;i.e Cadence IES command for compile: ncverilog +access+rwc -compile fa.v<br>
+	Steps for elaboration – Run the elaboration command with elaborate options 
 
-&emsp;&emsp;Left side select the file and in Tools : launch verilog compiler with current selection will get enable. Click it to compile the code <br>
-
-&emsp;&emsp;Worklib is the directory where all the compiled codes are stored while Snapshot will have output of elaboration which in turn goes for simulation<br>
-<br>
-
-![Screenshot 2024-10-05 093508](https://github.com/user-attachments/assets/29cbc647-b490-41bb-b378-023828234b1d)
-
-<br>
-
-**<p align="center">Fig 8: Compiled database in worklib**
-
-<br>
-&emsp;&emsp;After compilation it will come under worklib you can see in right side window<br>
-
-&emsp;&emsp;Select the test bench and compile it. It will come under worklib. Under Worklib you can see the module and test-bench. <br>
-
-&emsp;&emsp;The cds.lib file is an ASCII text file. It defines which libraries are accessible and where they are located. It contains statements that map logical library names to their physical directory paths. For this Design, you will define a library called “worklib”<br>
-<br>
-**Step 2: Elaboration:– To check the port connections in hierarchical design** <br>
-<br>
-&emsp;&emsp;Inputs: Top level design / test bench Verilog codes <br>
-
-&emsp;&emsp;Outputs: Elaborate database updated in mapped library if successful, generates report else error reported in log file <br>
-
-&emsp;&emsp;Steps for elaboration – Run the elaboration command with elaborate options <br>
-
-&emsp;&emsp;&emsp;&emsp;1.	It builds the module hierarchy <br>
-&emsp;&emsp;&emsp;&emsp;2.	Binds modules to module instances <br>
-&emsp;&emsp;&emsp;&emsp;3.	Computes parameter values <br>
-&emsp;&emsp;&emsp;&emsp;4.	Checks for hierarchical names conflicts <br>
-&emsp;&emsp;&emsp;&emsp;5.	It also establishes net connectivity and prepares all of this for simulation<br>
+1.	It builds the module hierarchy 
+2.	Binds modules to module instances 
+3.	Computes parameter values 
+4.	Checks for hierarchical names conflicts 
+5.	It also establishes net connectivity and prepares all of this for simulation
    
-&emsp;&emsp;After elaboration the file will come under snapshot. Select the test bench and elaborate it.<br>
-<br>
+	After elaboration the file will come under snapshot. Select the test bench and elaborate it.
 
-![Screenshot 2024-10-05 093552](https://github.com/user-attachments/assets/8169b828-4d0e-43de-bbf3-24916da7ebea)
+## Step 3: Simulation: – Simulate with the given test vectors over a period of time to observe the output behaviour. 
 
-<br>
+	Inputs: Compiled and Elaborated top level module name 
 
-**<p align="center">Fig 9: Elaboration Launch Option**
+	Outputs: Simulation log file, waveforms for debugging 
 
-<br>
+	Simulation allow to dump design and test bench signals into a waveform 
 
-**Step 3: Simulation: – Simulate with the given test vectors over a period of time to observe the output behaviour.** <br>
-<br>
-&emsp;&emsp;Inputs: Compiled and Elaborated top level module name <br>
+	Steps for simulation – Run the simulation command with simulator options
 
-&emsp;&emsp;Outputs: Simulation log file, waveforms for debugging <br>
+<img width="955" alt="exp1 4" src="https://github.com/user-attachments/assets/f84f11c1-8aa9-4648-8b2f-88c1cae6486b">
+### Fig 10: Design Browser window for simulation
 
-&emsp;&emsp;Simulation allow to dump design and test bench signals into a waveform <br>
+<img width="959" alt="exp1 5" src="https://github.com/user-attachments/assets/4bcfa68d-7451-43ac-9f2b-6cd6d6783673">
+### Fig 11: Launching Simulation Waveform WindowSimulation Waveform Window
 
-&emsp;&emsp;Steps for simulation – Run the simulation command with simulator options<br>
-<br>
+<img width="959" alt="exp1 6" src="https://github.com/user-attachments/assets/592b845e-5c6d-4312-9a7e-430348ff80fb">
+### Fig 12: Simulation Waveform Window
 
-![Picture3](https://github.com/user-attachments/assets/0585eddd-f9cf-47cf-a00a-3e4ba261713d)
+### Result:
 
-<br>
-
-**<p align="center">Fig 10: Design Browser window for simulation**
-
-<br>
-
-![Picture2](https://github.com/user-attachments/assets/2a4594ca-5a50-4a4f-884c-e0cdc8fb6690)
-
-<br>
-
-**<p align="center">Fig 11: Launching Simulation Waveform WindowSimulation Waveform Window**
-
-<br>
-
-![Picture1](https://github.com/user-attachments/assets/903122ee-20d7-4a10-944f-840a7f752368)
-
-<br>
-
-**<p align="center">Fig 12: Simulation Waveform Window**
-
-<br>
-
-**Result:** <br>
-<br>
-&emsp;&emsp;The functionality of a 4-bit adder was successfully verified using a test bench and simulated with the nclaunch tool.
-
-
+The functionality of a 4-bit adder was successfully verified using a test bench and simulated with the nclaunch tool.
 
 
 
